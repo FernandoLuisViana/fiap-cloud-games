@@ -105,7 +105,9 @@ A arquitetura utiliza dupla camada de segurança:
 ### 1️⃣ Subscription Key (APIM)
 
 Header obrigatório:
+```http
 Ocp-Apim-Subscription-Key: <sua-subscription-key>
+```
 
 ### 2️⃣ JWT Bearer Authentication
 
@@ -142,15 +144,19 @@ A Games API utiliza Elasticsearch para:
 
 ```mermaid
 flowchart LR
+
     Client[Client / Postman] --> APIM[Azure API Management]
 
+    %% APIs
     APIM --> Users[Users API]
     APIM --> Games[Games API]
     APIM --> Payments[Payments API]
 
+    %% Busca
     Games --> Elastic[Elasticsearch]
-    Games --> SB[Azure Service Bus]
 
+    %% Fluxo Assíncrono
+    Games --> SB[Azure Service Bus]
     SB --> Function[Azure Function]
     Function --> Payments
 ```
@@ -181,10 +187,10 @@ flowchart LR
 
 # 📌 Repositórios do Projeto
 
-- FCG.Users
-- FCG.Games
-- FCG.Payments
-- FCG.Functions
+- Users API: https://github.com/FernandoLuisViana/FCG.Users  
+- Games API: https://github.com/FernandoLuisViana/FCG.Games  
+- Payments API: https://github.com/FernandoLuisViana/FCG.Payments  
+- Azure Function: https://github.com/FernandoLuisViana/FCG.Functions  
 
 ---
 
